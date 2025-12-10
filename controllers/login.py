@@ -1,6 +1,8 @@
 from flask import make_response, jsonify, request
 from database import users_repository
 from bcrypt import checkpw
+from jwt import encode
+from datetime import datetime, timedelta, timezone
 
 def login():
     body = request.get_json()
@@ -10,7 +12,7 @@ def login():
 
     user = users_repository.findEmail(email)
 
-    if (user == None):
+    if user == None:
         return make_response({'message': 'Access invalid'}, 400)
     
     correctPass = checkpw(str.encode(password), str.encode(user['password']))
@@ -18,8 +20,13 @@ def login():
     if not correctPass:
         return make_response({'message': 'Access invalid'}, 400)
     
+    expire = datetime.now(tz=timezone.utc) + timedelta(hours=8)
+
+    token = encode({'id': user['id'], 'exp': expire}, 'secretPass', 'HS256')
+
     result = {
-        'user': user
+        'user': user,
+        'token': token
     }
 
     return make_response(jsonify(result), 200)
