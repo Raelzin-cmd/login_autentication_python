@@ -1,0 +1,5 @@
+psycopg[binary]
+flask
+bcrypt
+pyjwt
+dotenv
