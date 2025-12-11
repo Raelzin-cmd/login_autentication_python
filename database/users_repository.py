@@ -30,3 +30,18 @@ def findEmail(email):
         'email': user[2],
         'password': user[3],
     }
+
+
+def find(id):
+    result = cursor.execute('SELECT * FROM users WHERE id = %s', (id,))
+    user = result.fetchone()
+
+    if (user == None):
+        return None
+    
+    return {
+        'id': user[0],
+        'name': user[1],
+        'email': user[2],
+        'password': user[3],
+    }
