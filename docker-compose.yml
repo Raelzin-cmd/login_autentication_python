@@ -1,11 +1,11 @@
 services:
   postgres:
-    container_name: ${CONTAINER_NAME}
-    image: postgres:16-alpine
+    container_name: ${CONTAINER_NAME}                 # Nome do container definido no .env
+    image: postgres:16-alpine                         # Imagem leve do PostgreSQL
     environment:
-       POSTGRES_PASSWORD: ${PG_PASS}
-       POSTGRES_USER: ${PG_USER}
+       POSTGRES_PASSWORD: ${PG_PASS}                  # Senha do banco vinda do .env
+       POSTGRES_USER: ${PG_USER}                      # Usuário do banco vinda do .env
     volumes:
-      - ./data/postgres:/var/lib/postgresql/data
+      - ./data/postgres:/var/lib/postgresql/data      # Persistência dos dados do PostgreSQL
     ports:
-      - ${PORT}:${PORT}
+      - ${PORT}:${PORT}                               # Mapeamento de porta do host para o container

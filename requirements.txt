@@ -2,4 +2,4 @@ psycopg[binary]
 flask
 bcrypt
 pyjwt
-dotenv
+python-dotenv

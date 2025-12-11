@@ -1,3 +1,15 @@
+# Virtual environment
+venv/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# Env file (passwords, secrets)
 .env
-data/
-.venv
+
+# Docker volumes (Postgres data)
+data/postgres/
+
+# VSCode settings
+.vscode/
